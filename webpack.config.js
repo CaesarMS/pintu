@@ -25,5 +25,25 @@ module.exports = {
     })
     // new CopyWebpackPlugin([{ from: "./src/index.html", to: "index.html" }]),
   ],
+  module: {
+    rules: [
+      {
+       test: /\.css$/,
+       use: [ 'style-loader', 'css-loader' ]
+      },
+      {
+        test: /\.(eot|ttf|woff|woff2|png|jpe?g|gif|svg)$/,
+        loader: 'url-loader?limit=100000'
+      },
+      {
+        test: /\.js$/,
+        exclude: /(node_modules)/,
+        loader: 'babel-loader',
+        query: {
+          presets: ['es2015']
+        }
+      }
+    ]
+  }
   // devServer: { contentBase: path.join(__dirname, "dist"), compress: true },
 };
