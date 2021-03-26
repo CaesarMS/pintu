@@ -12,8 +12,8 @@ contract App{
 
     mapping(address => AppStruct) private addressToUser;
 
-    modifier onlyValidUser(uint _indexUser){
-        require(msg.sender == user[_indexUser]);
+    modifier onlyValidUser(address _userAddress, uint _indexUser){
+        require(_userAddress == user[_indexUser]);
         _;
     }
 
@@ -26,55 +26,55 @@ contract App{
         increment = 0;
     }
 
-    function isUser() public view returns(bool isIndeed){
+    function isUser(address _userAddress) public view returns(bool isIndeed){
         if(user.length == 0) return false;
-        return (user[addressToUser[msg.sender].index] == msg.sender);
+        return (user[addressToUser[_userAddress].index] == _userAddress);
     }
 
-    function createUser(bytes32 _name) public returns(bool success){
-        require(!isUser());
+    function createUser(address _userAddress, bytes32 _name) public returns(bool success){
+        require(!isUser(_userAddress));
 
-        addressToUser[msg.sender].name = _name;
-        addressToUser[msg.sender].deposit = 0;
-        addressToUser[msg.sender].index = user.push(msg.sender)-1;
+        addressToUser[_userAddress].name = _name;
+        addressToUser[_userAddress].deposit = 0;
+        addressToUser[_userAddress].index = user.push(_userAddress)-1;
 
         return true;
     }
 
-    function addIncrement() public returns(bool success){
-        require(isUser());
+    function addIncrement(address _userAddress) public returns(bool success){
+        require(isUser(_userAddress));
 
         increment += 1;
 
         return true;
     }
 
-    function resetIncrement() public returns(bool success){
-        require(isUser());
+    function resetIncrement(address _userAddress) public returns(bool success){
+        require(isUser(_userAddress));
 
         increment = 0;
 
         return true;
     }
 
-    function addDeposit(uint _amount) public payable minIncrement returns(bool success){
-        require(isUser());
+    function addDeposit(address _userAddress, uint _amount) public payable returns(bool success){
+        require(isUser(_userAddress));
         require(msg.value >= 100000000000000000);
 
         balance += msg.value;
-        addressToUser[msg.sender].deposit += _amount;
+        addressToUser[_userAddress].deposit += _amount;
         
         return true;
     }
 
-    function withdraw(uint _indexUser, uint _amount) public onlyValidUser(_indexUser) returns(bool success){
-        require(isUser());
-        require(addressToUser[msg.sender].deposit >= _amount);
+    function withdraw(address _userAddress, uint _indexUser, uint _amount) public minIncrement onlyValidUser(_userAddress, _indexUser) returns(bool success){
+        require(isUser(_userAddress));
+        require(addressToUser[_userAddress].deposit >= _amount);
 
-        msg.sender.transfer(_amount);
+        _userAddress.transfer(_amount);
 
         balance -= _amount;
-        addressToUser[msg.sender].deposit -= _amount;
+        addressToUser[_userAddress].deposit -= _amount;
 
         return true;
     }
