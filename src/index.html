@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <title>Pintu Assessment</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center mb-2" style="border-bottom: 2px solid #F4F4F4; height: 5.5vh;">
+			<div class="col-auto">
+            	<h1>Pintu Assessment</h1>
+         	</div>
+		</div>
+        <div class="row justify-content-center" style="height: 94.5vh; display: none;" id="login">
+            <div class="col-auto" style="display: flex; justify-content:center; align-items: center;">
+            	<button type="button" class="btn btn-primary">Login/SignUp</button>
+         	</div>
+        </div>
+        <div class="row justify-content-center" style="height: 94.5vh; display: none;" id="nameForm">
+            <div class="col-auto" style="display: flex; justify-content:center; align-items: center;">
+                <div class="text-center">
+                    <h5>Your Fortmatic Address</h5>
+                    <h5>0x908d593D8FE681AEEC973B241aA50B80F0D2933a</h4>
+                    <form class="mt-5">
+                        <div class="form-group row">
+                            <label class="col-2 col-form-label">Name</label>
+                            <div class="col-6">
+                                <input type="text" class="form-control" name="name" placeholder="Your Name">
+                                
+                            </div>
+                            <button type="button" class="btn btn-primary col-3">Submit</button>
+                        </div>
+                    </form>
+                </div>
+         	</div>
+        </div>
+        <div class="row justify-content-between" style="height: 5.5vh;">
+            <div class="col-auto">
+            	Your Address: <span class="ml-2">0x908d593D8FE681AEEC973B241aA50B80F0D2933a</span>
+         	</div>
+             <div class="col-auto">
+                <button type="button" class="btn btn-info">Fortmatic Account</button>
+         	</div>
+        </div>
+        <div class="row" style="height: 88vh;">
+            <div class="col-12" style="display: flex; justify-content:center; align-items: center;">
+                <div class="row justify-content-center">
+                    <div class="col-auto" style="display: flex; justify-content:center; align-items: center;">
+                        <div class="text-center">
+                            <h5>Your Deposit Balance</h5>
+                            <h5><span>100</span> ETH</h5>
+                            <div class="mt-3" style="display: flex; justify-content:center; align-items: center;">
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#depositModal">Deposit</button>
+                                <!-- Deposit Modal -->
+                                <div class="modal fade" id="depositModal" tabindex="-1" role="dialog" aria-labelledby="depositModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="depositModalLabel">Deposit</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-group row">
+                                                    <label class="col-2 col-form-label">Amount</label>
+                                                    <div class="col-8">
+                                                        <input type="number" min="0.1" step="any" class="form-control" name="withdrawAmount" value="0.1" placeholder="Withdrawal Amount in ETH" onchange="console.log(this.value)">
+                                                    </div>
+                                                    <label class="col-form-label">ETH</label>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-success">Deposit</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div>
+
+                                <button type="button" class="btn btn-warning ml-4" data-toggle="modal" data-target="#withdrawModal">Withdraw</button>
+                                <!-- Withdraw Modal -->
+                                <div class="modal fade" id="withdrawModal" tabindex="-1" role="dialog" aria-labelledby="withdrawModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="withdrawModalLabel">Withdrawal</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-group row">
+                                                    <label class="col-2 col-form-label">Amount</label>
+                                                    <div class="col-8">
+                                                        <input type="number" class="form-control" name="withdrawAmount" placeholder="Withdrawal Amount in ETH">
+                                                    </div>
+                                                    <label class="col-form-label">ETH</label>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-danger">Withdraw</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="row justify-content-center">
+                    <div class="col-auto" style="display: flex; justify-content:center; align-items: center;">
+                        <div class="text-center">
+                            <h5>Counter</h5>
+                            <h5>0</h5>
+                            <div class="mt-3" style="display: flex; justify-content:center; align-items: center;">
+                                <button type="button" class="btn btn-danger">Reset</button>
+                                <button type="button" class="btn btn-primary ml-4">Add 1</button>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

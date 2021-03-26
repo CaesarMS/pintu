@@ -6,7 +6,9 @@ const webpack = require("webpack");
 module.exports = {
   mode: 'development',
   devtool: 'source-map',
-  entry: "./src/js/index.js",
+  entry: {
+    app: "./src/js/index.js",
+  },
   output: {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist"),
@@ -15,7 +17,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       inject: 'body',
       template: './src/index.html',
-      chunks: ['index'],
+      chunks: ['app'],
       filename: 'index.html'
     }),
     new webpack.ProvidePlugin({
