@@ -12,7 +12,7 @@ This assessment project was developed in Truffle framework using Ganache as a cl
 3. Prepare Ganache as a client
     - Download and install [Ganache] first
     - Open Ganache and create New Workspace
-    - On Truffle Project, click add project and choose truffle-config.js
+    - On Truffle Project, click add project and choose truffle-config.js inside this project
     - Save Workspace
 4. Start the server
     ```sh
